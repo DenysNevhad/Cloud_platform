@@ -1,18 +1,24 @@
-from http.server import BaseHTTPRequestHandler
+from flask import Flask, jsonify, request
 from datetime import datetime
-import json
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'application/json')
-        self.end_headers()
-        
-        response = {
-            'message': 'Hello from Python!',
-            'timestamp': datetime.now().isoformat(),
-            'status': 'working'
-        }
-        
-        self.wfile.write(json.dumps(response, indent=2).encode())
-        return
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/api')
+def hello():
+    return jsonify({
+        'message': 'API працює!',
+        'timestamp': datetime.now().isoformat(),
+        'method': request.method
+    })
+
+@app.route('/api/test')
+def test():
+    return jsonify({
+        'status': 'success',
+        'data': 'Тестовий endpoint працює',
+        'timestamp': datetime.now().isoformat()
+    })
+
+if __name__ == '__main__':
+    app.run()
