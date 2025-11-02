@@ -1,9 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
+def index():
+    # Шукаємо index.html
+    html_path = os.path.join(os.path.dirname(__file__), '..', 'index.html')
+    if os.path.exists(html_path):
+        return send_file(html_path)
+    return jsonify({'message': 'Додайте index.html в корінь проекту'})
+
 @app.route('/api')
 def hello():
     return jsonify({
