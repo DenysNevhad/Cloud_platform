@@ -164,7 +164,7 @@ def index():
         </div>
         
         <div class="card">
-            <h2>📨 Echo Endpoint</h2>
+            <h2>📨 Post</h2>
             <p style="margin-bottom: 20px; color: #666;">Надішли JSON і отримай його назад</p>
             
             <div class="input-group">
@@ -177,7 +177,7 @@ def index():
                 <textarea id="echoMessage" rows="3" placeholder="Введіть повідомлення"></textarea>
             </div>
             
-            <button onclick="sendEcho()">Надіслати Echo</button>
+            <button onclick="sendEcho()">Надіслати</button>
             
             <div id="echoResponse" class="response"></div>
         </div>
